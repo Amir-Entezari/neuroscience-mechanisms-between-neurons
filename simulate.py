@@ -179,8 +179,14 @@ class Simulation:
 
 
 class CustomNeuronGroup(NeuronGroup):
-    def add_current_params_info(self, ax, current_idx, text_x=0.0, text_y=0.05):
-        params_info = f"""{self.behavior[current_idx].__class__.__name__} params: {self.behavior[current_idx].init_kwargs}"""
+    def get_behavior(self, behavior_class: type):
+        for key, behavior in self.behavior.items():
+            if behavior.__class__.__name__ == behavior_class.__name__:
+                return behavior
+
+    def add_current_params_info(self, ax, current_behavior_class: type, text_x=0.0, text_y=0.05):
+        current_behavior = self.get_behavior(current_behavior_class)
+        params_info = f"""{current_behavior.__class__.__name__} params: {current_behavior.init_kwargs}"""
         ax.text(text_x, text_y, params_info, transform=ax.transAxes, bbox=dict(facecolor='white', alpha=0.5))
 
     def add_neuron_model_params_info(self, ax, model_idx, text_x=0.0, text_y=0.05):
@@ -269,9 +275,15 @@ class CustomNeuronGroup(NeuronGroup):
 
 
 class CustomSynapseGroup(SynapseGroup):
-    def add_current_plot(self, ax):
+    def get_behavior(self, behavior_class: type):
+        for key, behavior in self.behavior.items():
+            if behavior.__class__.__name__ == behavior_class.__name__:
+                return behavior
+
+    def add_current_plot(self, ax, recorder_behavior_class):
+        recorder_behavior = self.get_behavior(recorder_behavior_class)
         # Plot the current
-        ax.plot(self.network[f"{self.tag}_rec", 0].variables["I"][:, :])
+        ax.plot(recorder_behavior.variables["I"][:, :])
 
         ax.set_xlabel('t')
         ax.set_ylabel('I(t)')
