@@ -176,7 +176,7 @@ class PairedSTDPLocalVar(BaseLearning):
         return dW * abs((self.w_max - synapse.weights) * (self.w_min - synapse.weights)) / (self.w_max * self.w_min)
 
     def reset_parameters(self, synapse):
-        if ((synapse.network.iteration - 1) % (synapse.network.duration + synapse.network.sleep)) == 0:
+        if ((synapse.network.iteration - 1) % (synapse.network.instance_duration + synapse.network.sleep)) == 0:
             synapse.src.v = synapse.src.vector(synapse.src.v_reset)
             synapse.dst.v = synapse.dst.vector(synapse.dst.v_reset)
             synapse.x = synapse.src.vector(0.0)
@@ -244,7 +244,7 @@ class PairedRSTDPLocalVar(BaseLearning):
 
         synapse.C += -synapse.C / self.tau_c + dC
 
-        if ((synapse.network.iteration - 1) % (synapse.network.duration + synapse.network.sleep)) == 0:
+        if ((synapse.network.iteration - 1) % (synapse.network.instance_duration + synapse.network.sleep)) == 0:
             winners = self.spike_counter.max() == self.spike_counter
             self.dopamine_list = synapse.dst.vector(self.negative_dopamine)
             self.dopamine_list[synapse.network.curr_data_idx] = self.positive_dopamine

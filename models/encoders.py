@@ -104,15 +104,15 @@ class FeedDataset(Behavior):
         self.encoded_dataset = self.parameter("encoded_dataset", None, required=True)
         self.sleep = self.parameter("sleep", None, required=True)
 
-        ng.network.duration = self.encoded_dataset[0].shape[0]
+        ng.network.instance_duration = self.encoded_dataset[0].shape[0]
         ng.network.sleep = self.sleep
 
     def forward(self, ng):
         # TODO: rewrite the encoded_dataset to ignore multiple dots
-        ng.network.curr_data_idx = (ng.network.iteration // (ng.network.duration + self.sleep)) % \
+        ng.network.curr_data_idx = (ng.network.iteration // (ng.network.instance_duration + self.sleep)) % \
                                    self.encoded_dataset.shape[0]
 
         is_sleep = (ng.network.iteration - 1) % (
-                ng.network.duration + self.sleep) < ng.network.duration
+                ng.network.instance_duration + self.sleep) < ng.network.instance_duration
         ng.spikes = is_sleep * self.encoded_dataset[ng.network.curr_data_idx][
-            (ng.network.iteration - 1) % ng.network.duration]
+            (ng.network.iteration - 1) % ng.network.instance_duration]
