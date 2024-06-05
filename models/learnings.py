@@ -1,42 +1,16 @@
 import numpy as np
 import torch
+from conex import BaseLearning
 
 from pymonntorch import Behavior
 
 
-class BaseLearning(Behavior):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.add_tag("weight_learning")
-
-    def get_spike_and_trace(self, synapse):
-        src_spike = synapse.src.axon.get_spike(synapse.src, synapse.src_delay)
-        dst_spike = synapse.dst.axon.get_spike(synapse.dst, synapse.dst_delay)
-
-        src_spike_trace = synapse.src.axon.get_spike_trace(
-            synapse.src, synapse.src_delay
-        )
-        dst_spike_trace = synapse.dst.axon.get_spike_trace(
-            synapse.dst, synapse.dst_delay
-        )
-
-        return src_spike, dst_spike, src_spike_trace, dst_spike_trace
-
-    def compute_dw(self, synapse):
-        ...
-
-    def forward(self, synapse):
-        synapse.weights += self.compute_dw(synapse)
-        self.reset_parameters(synapse)
 
 
 class PairedSTDPLocalVar(BaseLearning):
     def initialize(self, synapse):
         self.w_max = self.parameter("w_max", 1.0)  # Maximum weight for hard bounds
         self.w_min = self.parameter("w_min", -1.0)
-        # Trace parameters
-        self.tau_pre = self.parameter("tau_pre", None, required=True)  # Presynaptic trace decay constant
-        self.tau_post = self.parameter("tau_post", None, required=True)  # Postsynaptic trace decay constant
         # Parameters of A- and A+
         self.eta = self.parameter("eta", 1.0)  # Adding eta for weight change control
         self.learning_rate = self.parameter("learning_rate", None, required=True)
@@ -155,7 +129,7 @@ class PairedRSTDPLocalVar(BaseLearning):
             synapse.C = synapse.matrix(mode=0.0)
             self.spike_counter = synapse.dst.vector()
             self.dopamine_list = synapse.dst.vector()
-            synapse.src.v = synapse.src.vector(synapse.src.v_reset)
-            synapse.dst.v = synapse.dst.vector(synapse.dst.v_reset)
-            synapse.src.trace = synapse.src.vector(0.0)
-            synapse.dst.trace = synapse.dst.vector(0.0)
+            # synapse.src.v = synapse.src.vector(synapse.src.v_reset)
+            # synapse.dst.v = synapse.dst.vector(synapse.dst.v_reset)
+            # synapse.src.trace = synapse.src.vector(0.0)
+            # synapse.dst.trace = synapse.dst.vector(0.0)
