@@ -9,6 +9,9 @@
 
 /dataset
 /dataset/
+
+#Playground codes
+/playground
 # vscode related files:
 /.vscode/
 .vscode/
