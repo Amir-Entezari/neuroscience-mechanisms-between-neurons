@@ -34,3 +34,21 @@ class FullyConnectedSynapse(Behavior):
         pre_spike = sg.src.spikes
         # sg.I = torch.sum(sg.weights[pre_spike], axis=0)
         sg.I += torch.sum(sg.weights[pre_spike], axis=0) - sg.I * self.alpha
+
+
+def custom_synapse_weights(synapse,
+                           j0,
+                           variance=None):
+    N = synapse.src.size
+    mean = j0 / N
+
+    if variance is None:
+        variance = j0 / np.sqrt(N)
+    else:
+        variance = abs(mean) * variance
+
+    weights = synapse.matrix(mode=f"normal({mean},{variance})")
+    # Make the diagonal zero
+    if synapse.src == synapse.dst:
+        weights.weights.fill_diagonal_(0)
+    return weights
