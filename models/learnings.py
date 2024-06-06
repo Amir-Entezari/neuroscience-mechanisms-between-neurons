@@ -5,8 +5,6 @@ from conex import BaseLearning
 from pymonntorch import Behavior
 
 
-
-
 class PairedSTDPLocalVar(BaseLearning):
     def initialize(self, synapse):
         self.w_max = self.parameter("w_max", 1.0)  # Maximum weight for hard bounds
