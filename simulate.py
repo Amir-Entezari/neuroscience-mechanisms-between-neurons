@@ -213,9 +213,9 @@ class CustomNeuronGroup(NeuronGroup):
         # Plot the current
         ax.plot(recorder_behavior.variables["I"][:, :])
         ax.plot([], [], label="Other colors: Received I for each neuron")
-        ax.plot(recorder_behavior.variables["inp_I"][:, :1],
-                label="input current",
-                color='black')
+        # ax.plot(recorder_behavior.variables["inp_I"][:, :1],
+        #         label="input current",
+        #         color='black')
 
         ax.set_xlabel('t')
         ax.set_ylabel('I(t)')
