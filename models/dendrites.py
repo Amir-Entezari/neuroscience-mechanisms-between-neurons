@@ -65,3 +65,33 @@ class LateralDendriticInput2D(BaseDendriticInput):
         I = F.conv2d(input=spikes, weight=synapse.weights.T.unsqueeze(0).unsqueeze(0), padding=(1, 0))
         return I.view((-1,))
 
+
+class LateralInhibitionDendriticInput(Behavior):
+    """
+    Simple Lateral Inhibtion behavior.
+    """
+
+    def __init__(self, *args, current_coef=1, **kwargs):
+        super().__init__(*args, current_coef=current_coef, **kwargs)
+
+    def initialize(self, synapse):
+        """
+        Initializes the synapse with a coefficient based on the neuron type (excitatory/inhibitory).
+
+        Args:
+            synapse: The synapse object to be initialized.
+        """
+        synapse.add_tag(self.__class__.__name__)
+        self.current_coef = self.parameter("current_coef", 1)
+        synapse.I = synapse.dst.vector(0)
+        self.def_dtype = synapse.def_dtype
+
+    def forward(self, synapse):
+        synapse.I = self.current_coef * self.calculate_input(synapse)
+
+    def calculate_input(self, synapse):
+        spikes = synapse.src.axon.get_spike(synapse.src, synapse.src_delay).to(self.def_dtype)
+        # synapse.weights.fill_diagonal_(0.)
+        # I = -1 * spikes @ synapse.weights * spikes.sum()
+        I = (spikes - 1) * spikes.sum()
+        return I
