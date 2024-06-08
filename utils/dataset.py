@@ -56,10 +56,12 @@ def read_and_flatten_image(file_path, resize_width, resize_height):
     return flat_image_tensor
 
 
-def load_data(directory, resize_width, resize_height):
+def load_data(directory, resize_width, resize_height, img_formats: tuple[str] = None):
     # List all files in the directory
+    if img_formats is None:
+        img_formats = ('.png', '.jpg', '.jpeg')
     files = [os.path.join(directory, file) for file in os.listdir(directory) if
-             file.endswith(('.png', '.jpg', '.jpeg'))]
+             file.endswith(img_formats)]
 
     # Initialize a list to store the image tensors
     image_tensors = []
