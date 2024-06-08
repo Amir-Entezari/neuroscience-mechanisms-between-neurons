@@ -225,13 +225,14 @@ class CustomNeuronGroup(NeuronGroup):
     def add_raster_plot(self,
                         ax,
                         event_recorder_class: type,
-                        s=5):
+                        s=5,
+                        **kwargs):
         event_recorder = self.get_behavior(event_recorder_class)
         # Plot the raster plot
         spike_events = event_recorder.variables["spikes"]
         spike_times = spike_events[:, 0]
         neuron_ids = spike_events[:, 1]
-        ax.scatter(spike_times, neuron_ids, s=s, label=f"{self.tag}")
+        ax.scatter(spike_times, neuron_ids, s=s, label=f"{self.tag}", **kwargs)
         ax.set_xlabel('Time')
         ax.set_ylabel('Neuron ID')
         ax.legend(loc='upper right')
