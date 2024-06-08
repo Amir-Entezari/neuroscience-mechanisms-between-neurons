@@ -115,4 +115,4 @@ class FeedDataset(Behavior):
         is_sleep = (ng.network.iteration - 1) % (
                 ng.network.instance_duration + self.sleep) < ng.network.instance_duration
         ng.spikes = is_sleep * self.encoded_dataset[ng.network.curr_data_idx][
-            (ng.network.iteration - 1) % ng.network.instance_duration]
+            ((ng.network.iteration - 1) % (ng.network.instance_duration + self.sleep)) % ng.network.instance_duration]
