@@ -321,9 +321,13 @@ class CustomSynapseGroup(SynapseGroup):
         ax.text(text_x, text_y, params_info, transform=ax.transAxes, bbox=dict(facecolor='white', alpha=0.5),
                 fontsize=8)
 
-    def add_weights_plot(self, ax, recorder_behavior_class: type, neuron_id):
+    def add_weights_plot(self,
+                         ax,
+                         recorder_behavior_class: type,
+                         neuron_id,
+                         **kwargs):
         recorder_behavior = self.get_behavior(recorder_behavior_class)
-        ax.plot(recorder_behavior.variables["weights"][:, :, neuron_id])
+        ax.plot(recorder_behavior.variables["weights"][:, :, neuron_id], **kwargs)
         ax.set_xlabel('t')
         ax.set_ylabel('Weights')
         ax.legend()
