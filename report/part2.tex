@@ -50,38 +50,38 @@
         استفاده می‌کنیم.
         (شکل \ref{fig:part2-5-patterns})
 
-        \begin{figure}[H]
+        \begin{figure}[!ht]
             \centering
             % \begin{adjustbox}{minipage=\linewidth,scale=0.5}
-                \begin{subfigure}[b]{0.15\textwidth}
+                \begin{subfigure}[b]{0.17\textwidth}
                     \centering
                     \includegraphics[width=\textwidth]{images/bird.jpg}
                     \caption{}
                     \label{fig:waterloo-bird}
                 \end{subfigure}
                 \hfill
-                \begin{subfigure}[b]{0.15\textwidth}
+                \begin{subfigure}[b]{0.17\textwidth}
                     \centering
                     \includegraphics[width=\textwidth]{images/slop.jpg}
                     \caption{}
                     \label{fig:waterloo-slop}
                 \end{subfigure}
                 \hfill
-                \begin{subfigure}[b]{0.15\textwidth}
+                \begin{subfigure}[b]{0.17\textwidth}
                     \centering
                     \includegraphics[width=\textwidth]{images/lena1.jpg}
                     \caption{}
                     \label{fig:waterloo-lena1}
                 \end{subfigure}
                 \hfill
-                \begin{subfigure}[b]{0.15\textwidth}
+                \begin{subfigure}[b]{0.17\textwidth}
                     \centering
                     \includegraphics[width=\textwidth]{images/camera.jpg}
                     \caption{}
                     \label{fig:waterloo-camera}
                 \end{subfigure}
                 \hfill
-                \begin{subfigure}[b]{0.15\textwidth}
+                \begin{subfigure}[b]{0.17\textwidth}
                     \centering
                     \includegraphics[width=\textwidth]{images/me.jpg}
                     \caption{}
@@ -98,13 +98,63 @@
 
         \begin{figure}[!ht]
             \centering
-            \includegraphics[width=0.95\textwidth]{plots/part2-simple-stdp-kwta-lateral-inhibtion-homeostasis-5-patterns.pdf} 
+            \includegraphics[width=\textwidth]{plots/part2-simple-stdp-kwta-lateral-inhibtion-homeostasis-5-patterns.pdf} 
             \captionsetup{width=.9\linewidth}
             \caption{\textbf{ ساز و کار، مهار جانبی، 
             k-winners-take-all و 
             هومئوستازی براساس فعالیت در یک شبکه: الگو های بیشتر} مطابق شکل ملاحظه می‌کنیم که مدل توانسته است از عهده تشخیص الگو های بیشتر نیز بربیاید. هر نورون توانسته است یکی از الگو ها را یاد بگیرد. در این آزمایش، با تکرار شبیه سازی، پایداری مدل حفظ می‌شود و هر نورون لایه خروجی، یک الگو را تشخیص می‌دهد.}
             \label{fig:part2-simple-stdp-kwta-lateral-inhibtion-homeostasis-5-patterns}
         \end{figure}
+    \subsection{نتایج}
+        حال که با ساز و کار هم‌ایستایی به عنوان ساز و کاری که میزان فعالیت نورون ها را در یک بازه زمانی کنترل می‌کند آشنا شدیم، ممکن است به این فکر کنیم که این ساز و کار چقدر می‌تواند کارایی مدلمان را نسبت به بخش قبل بهبود دهد. خوشبختانه مطابق شکل 
+        \ref{fig:part1-evaluation-simple-stdp-LI-KWTA}
+        ملاحظه می‌کنیم که توانایی مدل در تشخیص الگو ها به میزان قابل توجهی افزایش یافته است.
+
+        \begin{figure}[!ht]
+            \centering
+            \begin{adjustbox}{minipage=\linewidth,scale=1}
+                \begin{subfigure}[b]{0.5\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{plots/with-normalization/part1-evaluation-simple-stdp-LI-KWTA-Homeostasis-2-patterns.pdf}
+                    \caption{2 الگو}
+                    \label{fig:part1-evaluation-simple-stdp-LI-KWTA-2-patterns}
+                \end{subfigure}
+                \hfill
+                \begin{subfigure}[b]{0.5\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{plots/with-normalization/part1-evaluation-simple-stdp-LI-KWTA-Homeostasis-10-patterns.pdf}
+                    \caption{6 الگو}
+                    \label{fig:part1-evaluation-simple-stdp-LI-KWTA-4-patterns}
+                \end{subfigure}
+                \vfill
+                \begin{subfigure}[b]{0.5\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{plots/with-normalization/part1-evaluation-simple-stdp-LI-KWTA-Homeostasis-20-patterns.pdf}
+                    \caption{20 الگو}
+                    \label{fig:part1-evaluation-simple-stdp-LI-KWTA-6-patterns}
+                \end{subfigure}
+                \hfill
+                \begin{subfigure}[b]{0.5\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{plots/with-normalization/part1-evaluation-simple-stdp-LI-KWTA-Homeostasis-30-patterns.pdf}
+                    \caption{30 الگو}
+                    \label{fig:part1-evaluation-simple-stdp-LI-KWTA-15-patterns}
+                \end{subfigure}
+            \end{adjustbox}
+            \caption{\textbf{آزمایش مدل با تعداد الگو های متفاوت.}در این آزمایش یک مدل ترین شده روی الگو ها را، به اندازه یک بار ورودی دادن همه الگو ها شبیه سازی می‌کنیم. 
+            (تعداد باری که هر الگو را مدل دیده است در هر آزمایش برابر است.) 
+            مطابق شکل مشاهده می‌کنیم که مدل حتی توانسته است تا ۳۰ الگو را به طور کامل یاد بگیرد و با تکرار آزمایش نیز در یادگیری موفق است. مشاهده می‌کنیم که مشکلی که در مدل قبلی 
+            (مدل شامل مهار جانبی و 
+            k-winners-take-all) 
+            باعث می‌شد برخی نورون ها فعالیتی از خود نشان ندهند و در نتیجه برخی الگو ها تشخیص داده نشوند، با اضافه شدن هم‌ایستایی مبتنی بر فعالیت رفع شده است. چرا که در این ساز و کار، ما میزان فعالیت نورون ها را کنترل می‌کنیم و نمی‌گذاریم که از حدی کمتر شود 
+            (یک نورون هیچ الگوی را تشخیص ندهد) 
+            یا از حدی بیشتر شده که یک نورون به ازای دو ورودی ضربه بزند.
+            من این آزمایش را برای تعداد بیشتر الگو ها هم انجام دادم ولی به دلیل محدودیت زمان و منابع محاسباتی، و همچنین شلوغ شدن تصاویر، تا ۳۰ الگو را در اینجا آورده‌‌ام.}
+            \label{fig:part1-evaluation-simple-stdp-LI-KWTA}
+        \end{figure}
+
+
+
 
 \clearpage
 \section{ساز و کار هومئوستازی براساس ولتاژ (امتیازی)}
@@ -186,6 +236,7 @@
                 \item \textbf{پیچیدگی:} رویکرد مبتنی بر فعالیت به دلیل نیاز به شمارش ضربه ها و محاسبه به روزرسانی ها ممکن است به طور بالقوه پیچیده تر باشد. رویکرد مبتنی بر ولتاژ مستقیماً ولتاژ جریان را با محدوده‌های تنظیم شده مقایسه می‌کند، که ممکن است از نظر محاسباتی ساده‌تر باشد.
                 \item \textbf{کاربرد:} انتخاب بین این روش ها به نیازهای خاص شبیه سازی بستگی دارد. به عنوان مثال، اگر تمرکز بر پایداری شبکه در برابر تغییرات ناگهانی در فعالیت ضربه ها باشد، روش مبتنی بر فعالیت ممکن است ترجیح داده شود. اگر اطمینان از عملکرد نورون‌ها در محدوده ولتاژ حیاتی‌تر باشد (احتمالاً برای جلوگیری از اشباع یا نورون‌های غیرفعال)،
                  روش مبتنی بر ولتاژ مناسب‌تر خواهد بود.
+                 (مثلا هنگامی که یک جریان یا فعالیت زمینه داریم.)
             \end{itemize}
 
 \clearpage
