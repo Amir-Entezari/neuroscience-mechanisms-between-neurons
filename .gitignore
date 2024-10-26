@@ -1,0 +1,56 @@
+/.idea/
+
+#Jupyter notebook related files:
+/.ipynb_checkpoints/
+/.ipynb_checkpoints
+.ipynb_checkpoints
+
+#Dataset folder
+
+/dataset
+/dataset/
+
+#Playground codes
+/playground
+# vscode related files:
+/.vscode/
+.vscode/
+.vscode
+
+# Latex related files:
+## LATEX: Core latex/pdflatex auxiliary files:
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+## LATEX: Intermediate documents:
+*.dvi
+*.xdv
+*-converted-to.*
+## LATEX: Bibliography auxiliary files (bibtex/biblatex/biber):
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+## LATEX: Build tool auxiliary files:
+*.fdb_latexmk
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+## plots
+/report/plots/
+
+*.zip

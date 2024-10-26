@@ -1,0 +1,102 @@
+\documentclass{report}
+
+\usepackage[textwidth=16cm, textheight=24cm]{geometry}
+% Packages for special characters and symbols
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsthm}
+
+% Package for hyperlinks
+\usepackage{hyperref}
+
+% Package for graphics
+\usepackage{graphicx, caption}
+\usepackage{fancyhdr} % For fancy headers and footers
+\usepackage[export]{adjustbox}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{dirtree}
+
+% Package for better tables
+\usepackage{booktabs}
+\usepackage{xepersian}
+
+
+
+
+
+% Page dimensions and margin settings
+\geometry{
+  top=0.5cm,
+%   left=3cm,
+  headheight=40pt, % Adjust the header height
+  headsep=10pt, % Separation between header and text
+  includeheadfoot
+}
+
+% Path to your logo
+\newcommand{\headerlogo}{images/Logo.png}
+
+% Header and footer configuration
+\pagestyle{fancy}
+\fancyhf{} % Clear header and footer
+\fancyhead[R]{\includegraphics[height=40pt]{\headerlogo}} % Logo on the Left of the header
+\fancyfoot[C]{\thepage} % Page number at the center of the footer
+
+% Ensure the header and footer lines are removed
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+
+
+
+% \setlatintextfont{Times New Roman}
+% \settextfont{Yas.ttf}
+\settextfont[
+BoldFont=Yas Bd.TTF]{Yas.TTF}
+% Set the title, author, and date
+\title{گزارش پروژه چهارم علوم اعصاب محاسباتی}
+\author{امیرحسین انتظاری}
+\date{\today}
+
+% Begin document
+\begin{document}
+\begin{figure}
+    \centering \includegraphics[height=3cm]{images/Logo.png}
+\end{figure}
+% Redefine chaptername
+\renewcommand{\chaptername}{بخش}
+\newpage
+% Create the title
+\maketitle
+\newpage
+% Create a table of contents
+\tableofcontents
+% Separate the table of contents from the next content with a new page
+% \clearpage
+
+\newgeometry{textwidth=13cm,textheight=22cm}
+    \begin{abstract}
+        هدف از این پروژه، آشنایی با ساز و کار های موجود بین نورون های یک لایه و تاثیر آن ها بر فرآیند یادگیری است. در این پروژه قصد داریم سه ساز و کار مهار جانبی
+        \footnote{\lr{Lateral inhibition}}، 
+        برنده-همه-چیز-را-می‌گیرد
+        \footnote{\lr{k-winners-take-all}} و
+        هم‌ایستایی
+        \footnote{Homeostasis} 
+        را بررسی کنیم. در اکثر آزمایش های این پروژه، از قانون یادگیری انعطاف‌پذیری وابسته به زمان ضربه 
+        ($STDP$\footnote{\lr{Spike-Timing-Dependent Plasticity}}) 
+        استفاده می‌کنیم. همچنین بررسی می‌کنیم انواع الگو ها از نظر تعداد و پیچیدگی آن ها چه تاثیری بر فرایند یادگیری می‌گذارد. در ادامه پارامتر های مختلف و تاثیر آن ها را نیز آزمایش خواهیم کرد و خواهیم دید که اضافه کردن هر یک از این ساز و کار ها به پروژه چه تاثیری در فرایند یادگیری مدل خواهد گذاشت.
+    \end{abstract}
+\restoregeometry
+
+\include{part1.tex}
+\newpage
+\include{part2.tex}
+\newpage
+\include{part3.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Bibliography section %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{bibelography.tex}
+\end{document}
